@@ -1,7 +1,7 @@
 ## Imports
 
 ## Codes
-from data import ZONE_KEY_TO_REGION, REGION_LONG_NAMES, NETWORK_LONG_NAMES
+from data.names import ZONE_KEY_TO_REGION, REGION_LONG_NAMES, NETWORK_LONG_NAMES
 REGION_TO_ZONE_KEY = {value:key for key, value in ZONE_KEY_TO_REGION.items()}
 
 ## Helpers

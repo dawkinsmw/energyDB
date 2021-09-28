@@ -1,3 +1,6 @@
 *__pycache__
-*.ipynbcheckpoints
+*.ipynb_checkpoints
 sandbox/*
+/src/database/data
+.vscode/
+data/database/

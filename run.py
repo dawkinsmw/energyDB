@@ -3,6 +3,7 @@ import psycopg2
 import logging
 import logging.config
 import datetime as dt
+from dateutil.relativedelta import relativedelta
 from src.database.python.db_create import db_create
 from src.database.python.db_destroy import db_destroy
 from src.database.python.db_up import db_up
@@ -15,11 +16,9 @@ logging.config.fileConfig(fname='conf/logging.conf', disable_existing_loggers=Fa
 logger = logging.getLogger(__name__)
 
 ## Params
-regions = ['NSW1',"SA1"]
-months = [
-    dt.date.fromisoformat('2021-07-01'),
-    dt.date.fromisoformat('2021-08-01')
-    ]
+regions = ['NSW1',"SA1",'QLD1','TAS1','VIC1','WEM']
+final_month_start = dt.date.today().replace(day=1)
+months = [final_month_start - relativedelta(months=i) for i in range(24)]
 
 ## Connect to DB
 dbc = psycopg2.connect(user=db_user,

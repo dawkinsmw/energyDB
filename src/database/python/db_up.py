@@ -1,6 +1,8 @@
 
-def db_up(dbc):
+def db_up(dbc,logger):
     cur = dbc.cursor()
+
+    logger.debug("db_up: Dim_Fueltech")
     cur.execute(
     f"create table Dim_Fueltech (\
             id serial PRIMARY KEY,\
@@ -9,6 +11,7 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: Dim_Network")
     cur.execute(
     f"create table Dim_Network (\
             id  serial PRIMARY KEY,\
@@ -17,6 +20,7 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: Dim_Region")
     cur.execute(
     f"create table Dim_Region (\
             id serial PRIMARY KEY,\
@@ -27,6 +31,7 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: Dim_Batch")
     cur.execute(
     f"create table Dim_Batch (\
             id  serial PRIMARY KEY,\
@@ -48,6 +53,7 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: Fact_Power")
     cur.execute(
     f"create table Fact_Power (\
             batch_id integer,\
@@ -65,6 +71,7 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: Fact_Price")
     cur.execute(
     f"create table Fact_Price (\
             batch_id integer,\
@@ -78,6 +85,7 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: Fact_X_Cap")
     cur.execute(
     f"create table Fact_X_Cap (\
             batch_id  integer,\
@@ -94,4 +102,5 @@ def db_up(dbc):
     );"
     )
 
+    logger.debug("db_up: commit")
     dbc.commit()

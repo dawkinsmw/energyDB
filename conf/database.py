@@ -1,5 +1,5 @@
-db_name = "energy"
-db_user = "dawki"
+db_name = "netZero"
+db_user = "jupytersvc"
 db_pword = "password"
 db_host="127.0.0.1"
 db_port="5432"

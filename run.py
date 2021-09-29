@@ -25,9 +25,10 @@ dbc = psycopg2.connect(user=db_user,
                         password=db_pword,
                         host=db_host,
                         port=db_port,
-                        database=db_name)
-db_down(dbc)
-db_up(dbc,logger)
-db_populate(dbc,logger,regions, months)
+                        database=db_user)
+db_create(dbc,db_name)
+# db_down(dbc)
+# db_up(dbc,logger)
+# db_populate(dbc,logger,regions, months)
 dbc.close()
 

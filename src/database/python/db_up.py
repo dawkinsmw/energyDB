@@ -6,8 +6,7 @@ def db_up(dbc,logger):
     cur.execute(
     f"create table Dim_Fueltech (\
             id serial PRIMARY KEY,\
-            long_name  varchar(50) UNIQUE,\
-            renewable  boolean\
+            long_name  varchar(50) UNIQUE\
     );"
     )
 
@@ -30,7 +29,7 @@ def db_up(dbc,logger):
             long_name varchar(50)\
     );"
     )
-
+        
     logger.debug("db_up: Dim_Batch")
     cur.execute(
     f"create table Dim_Batch (\
@@ -101,6 +100,27 @@ def db_up(dbc,logger):
             REFERENCES Dim_Fueltech(id)\
     );"
     )
-
+    
+    logger.debug("db_up: Fact_CarbonFactor")
+    cur.execute(
+    f"create table Fact_CarbonFactor (\
+            network_id integer,\
+            region_id integer,\
+            fueltech_id integer,\
+            carbon_factor numeric,\
+        CONSTRAINT pk_carbonfactor\
+            PRIMARY KEY(network_id, region_id, fueltech_id),\
+        CONSTRAINT fk_batch\
+            FOREIGN KEY(network_id) \
+            REFERENCES Dim_Network(id),\
+        CONSTRAINT fk_batch\
+            FOREIGN KEY(region_id) \
+            REFERENCES Dim_Region(id),\
+        CONSTRAINT fk_fueltech\
+            FOREIGN KEY(fueltech_id) \
+            REFERENCES Dim_Fueltech(id)\
+    );"
+    )
+    
     logger.debug("db_up: commit")
     dbc.commit()

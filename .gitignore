@@ -1,6 +1,9 @@
 *__pycache__
 *.ipynb_checkpoints
 sandbox/*
+nemweb/*
+investigations/nemweb/*
+log
 /src/database/data
 .vscode/
 data/database/

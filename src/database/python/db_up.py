@@ -110,10 +110,10 @@ def db_up(dbc,logger):
             carbon_factor numeric,\
         CONSTRAINT pk_carbonfactor\
             PRIMARY KEY(network_id, region_id, fueltech_id),\
-        CONSTRAINT fk_batch\
+        CONSTRAINT fk_network\
             FOREIGN KEY(network_id) \
             REFERENCES Dim_Network(id),\
-        CONSTRAINT fk_batch\
+        CONSTRAINT fk_region\
             FOREIGN KEY(region_id) \
             REFERENCES Dim_Region(id),\
         CONSTRAINT fk_fueltech\

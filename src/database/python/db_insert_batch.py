@@ -120,11 +120,11 @@ def insert_batch(cursor,logger,meta,price,power):
                 )
             else:
                 cursor.execute(
-                    f"INSERT INTO Fact_Price(batch_id,interval_start,price) VALUES ('{batch_index}', '{ts}', '{pc}')"
+                    f"INSERT INTO Fact_Price(batch_id,interval_start,price) VALUES ('{batch_index}', '{ts}', '{pc:.6f}')"
                 )
         except Exception as e:
             logger.error(f"Batch {batch_index} failed")
-            logger.error(f"failed to insert ('{batch_index}', '{ts}', '{pc}') into Fact_Price")
+            logger.error(f"failed to insert ('{batch_index}', '{ts}', '{pc:.6f}') into Fact_Price")
             logger.error(e)
 
     ## FACT_X_CAP

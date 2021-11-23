@@ -6,6 +6,7 @@ import datetime as dt
 from time import sleep
 from src.parser.parser_opennem import parse_request_json
 from src.database.python.db_insert_batch import insert_batch
+from src.database.python.db_insert_carbon_factors import insert_emission_factors
 
 
 def db_populate(dbc, logger, regions, months):
@@ -38,6 +39,11 @@ def db_populate(dbc, logger, regions, months):
             logger.debug('Inserting batch..')
             cursor = dbc.cursor()
             insert_batch(cursor,logger,meta,price,power)
+
+            ## Insert emission factors
+            logger.debug('Inserting emission factors..')
+            cursor = dbc.cursor()
+            insert_emission_factors(cursor,logger)
 
             ## Commit transaction
             logger.debug('Commiting to DB..')

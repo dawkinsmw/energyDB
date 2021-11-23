@@ -7,7 +7,7 @@ def db_up(dbc,logger):
     f"create table Dim_Fueltech (\
             id serial PRIMARY KEY,\
             long_name  varchar(50) UNIQUE,\
-            renewable  boolean\
+            emissions_factor  numeric\
     );"
     )
 
